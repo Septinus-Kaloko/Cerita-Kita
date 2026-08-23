@@ -45,7 +45,7 @@ contactForm.addEventListener("submit", (event) => {
   const whatsappNumber = "6282277667681";
 
   const text = [
-    "Halo Lensa & Cerita,",
+    "Halo cerita & Kita,",
     "",
     `Nama: ${name}`,
     `Nomor WhatsApp: ${phone}`,
