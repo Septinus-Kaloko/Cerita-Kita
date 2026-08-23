@@ -42,7 +42,7 @@ contactForm.addEventListener("submit", (event) => {
   const date = document.getElementById("date").value;
   const message = document.getElementById("message").value.trim();
 
-  const whatsappNumber = "6281234567890";
+  const whatsappNumber = "6282277667681";
 
   const text = [
     "Halo Lensa & Cerita,",
