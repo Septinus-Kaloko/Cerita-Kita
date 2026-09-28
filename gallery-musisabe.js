@@ -177,40 +177,7 @@ async function downloadCurrentPhoto() {
     downloadOriginal.textContent = "Download Original";
   }
 }
-  const fileName = photos[currentIndex];
-  const url = fileUrl(fileName);
-
-  const originalText = downloadOriginal.textContent;
-  downloadOriginal.disabled = true;
-  downloadOriginal.textContent = "Menyiapkan...";
-
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-  } catch (error) {
-    console.error("Download gagal:", error);
-    
-  } finally {
-    downloadOriginal.disabled = false;
-    downloadOriginal.textContent = originalText;
-  }
-}
-
+  
 lightboxClose.addEventListener("click", closeLightbox);
 lightboxPrev.addEventListener("click", previousPhoto);
 lightboxNext.addEventListener("click", nextPhoto);
