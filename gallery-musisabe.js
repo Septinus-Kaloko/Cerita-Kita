@@ -140,6 +140,46 @@ async function downloadCurrentPhoto() {
   const fileName = photos[currentIndex];
   const url = fileUrl(fileName);
 
+  downloadOriginal.disabled = true;
+  downloadOriginal.textContent = "Downloading...";
+
+  try {
+    const response = await fetch(url, {
+      mode: "cors",
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error(`Download gagal: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = fileName;
+    a.style.display = "none";
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => {
+      URL.revokeObjectURL(blobUrl);
+    }, 3000);
+
+  } catch (error) {
+    console.error("Download error:", error);
+    alert("Download gagal. Silakan coba lagi.");
+  } finally {
+    downloadOriginal.disabled = false;
+    downloadOriginal.textContent = "Download Original";
+  }
+}
+  const fileName = photos[currentIndex];
+  const url = fileUrl(fileName);
+
   const originalText = downloadOriginal.textContent;
   downloadOriginal.disabled = true;
   downloadOriginal.textContent = "Menyiapkan...";
