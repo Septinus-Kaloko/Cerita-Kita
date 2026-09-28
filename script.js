@@ -311,8 +311,36 @@ document.addEventListener("DOMContentLoaded", () => {
     lightboxImg.src = url;
     photoNameEl.textContent = fileName;
     positionEl.textContent = `${currentIndex + 1} / ${photos.length}`;
-    downloadEl.href = url;
-    downloadEl.setAttribute("download", fileName);
+    downloadEl.href = "#";
+downloadEl.onclick = async (event) => {
+  event.preventDefault();
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Download gagal");
+    }
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(blobUrl);
+  } catch (error) {
+    console.error(error);
+
+    // fallback kalau browser menolak fetch
+    window.open(url, "_blank");
+  }
+};
 
     lightbox.classList.add("open");
     lightbox.setAttribute("aria-hidden", "false");
