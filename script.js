@@ -374,18 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (usingFallback) {
-      const note = document.createElement("div");
-      note.className = "gallery-message";
-      note.style.marginBottom = "16px";
-      note.innerHTML = `
-        <strong>Mode contoh aktif.</strong><br>
-        Isi <code>R2_PUBLIC_BASE_URL</code> dan upload <code>gallery.json</code>
-        agar seluruh foto dari R2 tampil otomatis.
-      `;
-      grid.before(note);
-    }
-
+   
     renderMore();
   });
 
