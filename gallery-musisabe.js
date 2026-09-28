@@ -204,8 +204,7 @@ async function downloadCurrentPhoto() {
     setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
   } catch (error) {
     console.error("Download gagal:", error);
-    // Fallback: buka file original di tab baru.
-    window.open(url, "_blank", "noopener");
+    
   } finally {
     downloadOriginal.disabled = false;
     downloadOriginal.textContent = originalText;
