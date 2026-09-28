@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   const GALLERY_CONFIG = {
-    R2_PUBLIC_BASE_URL: "PASTE_R2_PUBLIC_URL_DI_SINI",
+    R2_PUBLIC_BASE_URL: "https://pub-52a26396ab53445e894e45f34beba90e.r2.dev",
     ALBUM_PATH: "HUT MUSISABE ke-37/Sabtu, 26 Sept. 2026",
     MANIFEST_FILE: "gallery.json",
     PER_PAGE: 30,
