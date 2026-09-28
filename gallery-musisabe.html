@@ -3,315 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Galeri HUT MUSISABE ke-37 oleh Cerita & Kita." />
+  <meta name="description" content="Galeri HUT MUSISABE ke-37 - Cerita & Kita." />
   <title>HUT MUSISABE ke-37 | Cerita & Kita</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
   <style>
-    .gallery-page {
-      min-height: 100vh;
-      background: #fffdfb;
-      padding-bottom: 70px;
-    }
-
-    .gallery-topbar {
-      position: sticky;
-      top: 0;
-      z-index: 40;
-      background: rgba(255, 253, 251, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid #e7ddd4;
-    }
-
-    .gallery-topbar-inner {
-      width: min(1200px, calc(100% - 36px));
-      margin: 0 auto;
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .gallery-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      color: #6f4f39;
-    }
-
-    .gallery-logo {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.55rem;
-      font-weight: 700;
-    }
-
-    .gallery-logo span { color: #9f7657; }
-
-    .album-header {
-      width: min(1200px, calc(100% - 36px));
-      margin: 0 auto;
-      padding: 64px 0 34px;
-    }
-
-    .album-kicker {
-      color: #9f7657;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .album-header h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(2.7rem, 7vw, 5.5rem);
-      line-height: 1;
-      color: #2d2926;
-      margin: 0;
-    }
-
-    .album-meta {
-      margin-top: 18px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-      color: #736b65;
-    }
-
-    .album-toolbar {
-      width: min(1200px, calc(100% - 36px));
-      margin: 0 auto 22px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .album-count {
-      color: #736b65;
-      font-size: .92rem;
-    }
-
-    .album-help {
-      color: #736b65;
-      font-size: .86rem;
-    }
-
-    .photo-grid {
-      width: min(1200px, calc(100% - 36px));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .photo-card {
-      border: 0;
-      padding: 0;
-      background: #f7f1eb;
-      border-radius: 14px;
-      overflow: hidden;
-      aspect-ratio: 1 / 1;
-      cursor: zoom-in;
-      position: relative;
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      transition: transform .25s ease;
-    }
-
-    .photo-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .load-sentinel {
-      width: min(1200px, calc(100% - 36px));
-      height: 1px;
-      margin: 30px auto 0;
-    }
-
-    .loading-text,
-    .gallery-error {
-      width: min(1200px, calc(100% - 36px));
-      margin: 24px auto;
-      text-align: center;
-      color: #736b65;
-    }
-
-    .gallery-error {
-      padding: 24px;
-      border: 1px dashed #d6b89d;
-      border-radius: 16px;
-    }
-
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      grid-template-rows: auto 1fr auto;
-      background: rgba(13, 12, 11, .97);
-    }
-
-    .lightbox.open { display: grid; }
-
-    .lightbox-top,
-    .lightbox-bottom {
-      min-height: 62px;
-      padding: 10px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      color: white;
-      border-color: rgba(255,255,255,.12);
-    }
-
-    .lightbox-top { border-bottom: 1px solid rgba(255,255,255,.12); }
-    .lightbox-bottom { border-top: 1px solid rgba(255,255,255,.12); }
-
-    .lightbox-stage {
-      min-height: 0;
-      position: relative;
-      display: grid;
-      place-items: center;
-      padding: 16px 70px;
-    }
-
-    .lightbox-image {
-      max-width: 100%;
-      max-height: calc(100vh - 150px);
-      object-fit: contain;
-      user-select: none;
-    }
-
-    .lightbox-close,
-    .lightbox-nav,
-    .download-btn {
-      border: 0;
-      color: white;
-      background: rgba(255,255,255,.12);
-      border-radius: 999px;
-      min-height: 42px;
-    }
-
-    .lightbox-close {
-      width: 42px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 46px;
-      height: 46px;
-      font-size: 26px;
-      cursor: pointer;
-    }
-
-    .lightbox-prev { left: 14px; }
-    .lightbox-next { right: 14px; }
-
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .lightbox-name {
-      max-width: 65vw;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    body.lightbox-lock { overflow: hidden; }
-
-    @media (max-width: 900px) {
-      .photo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 620px) {
-      .gallery-topbar-inner,
-      .album-header,
-      .album-toolbar,
-      .photo-grid,
-      .load-sentinel,
-      .loading-text,
-      .gallery-error {
-        width: min(100% - 24px, 1200px);
-      }
-
-      .album-header { padding-top: 42px; }
-      .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
-      .photo-card { border-radius: 10px; }
-      .lightbox-stage { padding: 10px 42px; }
-      .lightbox-nav { width: 38px; height: 38px; font-size: 21px; }
-      .download-btn { padding: 9px 13px; font-size: .82rem; }
-      .lightbox-name { max-width: 48vw; font-size: .8rem; }
-    }
+    body{background:#fffdfb}
+    .event-topbar{position:sticky;top:0;z-index:30;background:rgba(255,253,251,.94);backdrop-filter:blur(12px);border-bottom:1px solid #e7ddd4}
+    .event-topbar-inner{width:min(1200px,calc(100% - 36px));min-height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .event-back{font-weight:700;color:#6f4f39}.event-logo{font-family:"Cormorant Garamond",serif;font-size:1.55rem;font-weight:700}.event-logo span{color:#9f7657}
+    .event-wrap{width:min(1200px,calc(100% - 36px));margin:auto;padding:64px 0 80px}.event-kicker{color:#9f7657;font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+    .event-title{font-family:"Cormorant Garamond",serif;font-size:clamp(3rem,8vw,6.2rem);line-height:.95;margin:0;color:#2d2926}.event-sub{margin-top:18px;color:#736b65}
+    .day-section{margin-top:64px}.day-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}.day-head h2{font-family:"Cormorant Garamond",serif;font-size:clamp(2.1rem,4vw,3.2rem);margin:0}
+    .day-meta{margin-top:8px;color:#736b65}.day-link{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:999px;background:#9f7657;color:#fff;font-weight:700;white-space:nowrap}.day-link:hover{background:#6f4f39}
+    .preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.preview-card{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#f7f1eb}.preview-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .preview-empty{grid-column:1/-1;padding:30px;border:1px dashed #d6b89d;border-radius:16px;color:#736b65;text-align:center}.photo-count{font-size:.9rem;color:#736b65}
+    @media(max-width:900px){.preview-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:620px){.event-topbar-inner,.event-wrap{width:min(100% - 24px,1200px)}.event-wrap{padding-top:42px}.day-section{margin-top:48px}.day-head{align-items:flex-start;flex-direction:column}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.preview-card{border-radius:10px}.day-link{width:100%}}
   </style>
 </head>
 <body>
-  <main class="gallery-page">
-    <div class="gallery-topbar">
-      <div class="gallery-topbar-inner">
-        <a href="index.html#portofolio" class="gallery-back">← Kembali</a>
-        <a href="index.html" class="gallery-logo"><span>Cerita</span> & Kita</a>
-      </div>
-    </div>
-
-    <header class="album-header">
-      <div class="album-kicker">Client Gallery</div>
-      <h1>HUT MUSISABE ke-37</h1>
-      <div class="album-meta">
-        <span>Sabtu, 26 September 2026</span>
-        <span id="albumCount">Memuat foto...</span>
-      </div>
-    </header>
-
-    <div class="album-toolbar">
-      <div class="album-count" id="albumCountTop"></div>
-      <div class="album-help">Klik foto untuk melihat ukuran besar & download original</div>
-    </div>
-
-    <section class="photo-grid" id="photoGrid" aria-live="polite"></section>
-    <div class="loading-text" id="loadingText">Memuat foto...</div>
-    <div class="load-sentinel" id="loadSentinel"></div>
-  </main>
-
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <div class="lightbox-top">
-      <div class="lightbox-name" id="lightboxName"></div>
-      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Tutup">×</button>
-    </div>
-
-    <div class="lightbox-stage">
-      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Foto sebelumnya">‹</button>
-      <img class="lightbox-image" id="lightboxImage" alt="Preview foto" />
-      <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Foto berikutnya">›</button>
-    </div>
-
-    <div class="lightbox-bottom">
-      <div id="lightboxPosition"></div>
-      <button class="download-btn" id="downloadOriginal" type="button">Download Original</button>
+  <div class="event-topbar">
+    <div class="event-topbar-inner">
+      <a class="event-back" href="index.html#portofolio">← Kembali</a>
+      <a class="event-logo" href="index.html"><span>Cerita</span> & Kita</a>
     </div>
   </div>
+  <main class="event-wrap">
+    <div class="event-kicker">Client Gallery</div>
+    <h1 class="event-title">HUT MUSISABE ke-37</h1>
+    <p class="event-sub">Pilih hari acara untuk melihat seluruh foto.</p>
 
+    <section class="day-section">
+      <div class="day-head">
+        <div>
+          <h2>Sabtu</h2>
+          <div class="day-meta">26 September 2026 · <span class="photo-count" id="countSabtu">Memuat...</span></div>
+        </div>
+        <a class="day-link" href="gallery-day.html?day=sabtu">Lihat Semua Foto →</a>
+      </div>
+      <div class="preview-grid" id="previewSabtu"></div>
+    </section>
+
+    <section class="day-section">
+      <div class="day-head">
+        <div>
+          <h2>Minggu</h2>
+          <div class="day-meta">27 September 2026 · <span class="photo-count" id="countMinggu">Memuat...</span></div>
+        </div>
+        <a class="day-link" href="gallery-day.html?day=minggu">Lihat Semua Foto →</a>
+      </div>
+      <div class="preview-grid" id="previewMinggu"></div>
+    </section>
+  </main>
   <script src="gallery-musisabe.js"></script>
 </body>
 </html>

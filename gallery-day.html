@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galeri foto HUT MUSISABE ke-37 - Cerita & Kita." />
+  <title>Galeri HUT MUSISABE | Cerita & Kita</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body{background:#fffdfb}.g-top{position:sticky;top:0;z-index:30;background:rgba(255,253,251,.94);backdrop-filter:blur(12px);border-bottom:1px solid #e7ddd4}
+    .g-topin{width:min(1200px,calc(100% - 36px));min-height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}.g-back{font-weight:700;color:#6f4f39}
+    .g-logo{font-family:"Cormorant Garamond",serif;font-size:1.55rem;font-weight:700}.g-logo span{color:#9f7657}
+    .g-head,.g-tools,.g-grid,.g-status,.g-sentinel{width:min(1200px,calc(100% - 36px));margin-left:auto;margin-right:auto}.g-head{padding:58px 0 28px}
+    .g-kicker{color:#9f7657;font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}.g-head h1{font-family:"Cormorant Garamond",serif;font-size:clamp(2.8rem,7vw,5.4rem);line-height:1;margin:0;color:#2d2926}.g-meta{margin-top:16px;color:#736b65}
+    .g-tools{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:20px;color:#736b65;font-size:.88rem}.g-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .g-card{border:0;padding:0;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#f7f1eb;cursor:zoom-in}.g-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .25s ease}.g-card:hover img{transform:scale(1.03)}
+    .g-status{text-align:center;color:#736b65;padding:24px 0}.g-sentinel{height:1px;margin-top:20px}
+    .lb{position:fixed;inset:0;z-index:1000;display:none;grid-template-rows:auto 1fr auto;background:rgba(13,12,11,.97)}.lb.open{display:grid}
+    .lb-top,.lb-bottom{min-height:62px;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#fff}.lb-top{border-bottom:1px solid rgba(255,255,255,.12)}.lb-bottom{border-top:1px solid rgba(255,255,255,.12)}
+    .lb-stage{min-height:0;position:relative;display:grid;place-items:center;padding:16px 70px}.lb-img{max-width:100%;max-height:calc(100vh - 150px);object-fit:contain}
+    .lb-close,.lb-nav,.lb-download{border:0;color:#fff;background:rgba(255,255,255,.12);border-radius:999px;min-height:42px}.lb-close{width:42px;font-size:24px;cursor:pointer}
+    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;font-size:26px;cursor:pointer}.lb-prev{left:14px}.lb-next{right:14px}
+    .lb-download{padding:10px 18px;font-weight:700;cursor:pointer}.lb-name{max-width:65vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}body.lb-lock{overflow:hidden}
+    @media(max-width:900px){.g-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:620px){.g-topin,.g-head,.g-tools,.g-grid,.g-status,.g-sentinel{width:min(100% - 24px,1200px)}.g-head{padding-top:42px}.g-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.g-card{border-radius:10px}.lb-stage{padding:10px 42px}.lb-nav{width:38px;height:38px;font-size:21px}.lb-download{padding:9px 13px;font-size:.82rem}.lb-name{max-width:48vw;font-size:.8rem}}
+  </style>
+</head>
+<body>
+  <div class="g-top"><div class="g-topin"><a class="g-back" href="gallery-musisabe.html">← Pilih Hari</a><a class="g-logo" href="index.html"><span>Cerita</span> & Kita</a></div></div>
+  <header class="g-head"><div class="g-kicker">Client Gallery</div><h1>HUT MUSISABE ke-37</h1><div class="g-meta"><span id="galleryDate"></span> · <span id="galleryCount">Memuat...</span></div></header>
+  <div class="g-tools"><span>Klik foto untuk preview ukuran besar</span><span>Scroll ke bawah untuk memuat foto berikutnya</span></div>
+  <section class="g-grid" id="galleryGrid"></section><div class="g-status" id="galleryStatus">Memuat foto...</div><div class="g-sentinel" id="gallerySentinel"></div>
+
+  <div class="lb" id="lightbox" aria-hidden="true">
+    <div class="lb-top"><div class="lb-name" id="lbName"></div><button class="lb-close" id="lbClose" type="button">×</button></div>
+    <div class="lb-stage"><button class="lb-nav lb-prev" id="lbPrev" type="button">‹</button><img class="lb-img" id="lbImage" alt="Preview foto" /><button class="lb-nav lb-next" id="lbNext" type="button">›</button></div>
+    <div class="lb-bottom"><div id="lbPosition"></div><button class="lb-download" id="lbDownload" type="button">Download Original</button></div>
+  </div>
+  <script src="gallery-day.js"></script>
+</body>
+</html>
