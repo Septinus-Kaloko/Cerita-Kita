@@ -1,63 +1,694 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Galeri HUT MUSISABE ke-37 - Cerita & Kita." />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="Galeri HUT MUSISABE ke-37 - Cerita & Kita."
+  />
+
   <title>HUT MUSISABE ke-37 | Cerita & Kita</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+
+
+  <!-- =========================================
+       WHATSAPP / FACEBOOK / SOCIAL PREVIEW
+  ========================================== -->
+
+  <meta
+    property="og:title"
+    content="HUT MUSISABE ke-37 | Cerita & Kita"
+  />
+
+  <meta
+    property="og:description"
+    content="Galeri HUT MUSISABE ke-37 - Sabtu & Minggu, 26–27 September 2026."
+  />
+
+  <meta
+    property="og:type"
+    content="website"
+  />
+
+  <meta
+    property="og:url"
+    content="https://septinus-kaloko.github.io/Cerita-Kita/gallery-musisabe.html"
+  />
+
+  <meta
+    property="og:image"
+    content="https://pub-52a26396ab53445e894e45f34beba90e.r2.dev/HUT%20MUSISABE%20ke-37/Sabtu%2C%2026%20Sept.%202026/DSC07548.JPG"
+  />
+
+  <meta
+    property="og:image:alt"
+    content="HUT MUSISABE ke-37 - Cerita & Kita"
+  />
+
+  <meta
+    property="og:site_name"
+    content="Cerita & Kita"
+  />
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content="HUT MUSISABE ke-37 | Cerita & Kita"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Galeri HUT MUSISABE ke-37 - Sabtu & Minggu, 26–27 September 2026."
+  />
+
+  <meta
+    name="twitter:image"
+    content="https://pub-52a26396ab53445e894e45f34beba90e.r2.dev/HUT%20MUSISABE%20ke-37/Sabtu%2C%2026%20Sept.%202026/DSC07548.JPG"
+  />
+
+
+  <!-- =========================================
+       FONT
+  ========================================== -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+
+  <!-- CSS WEBSITE UTAMA -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+
+  <!-- =========================================
+       STYLE HALAMAN GALLERY EVENT
+  ========================================== -->
+
   <style>
-    body{background:#fffdfb}
-    .event-topbar{position:sticky;top:0;z-index:30;background:rgba(255,253,251,.94);backdrop-filter:blur(12px);border-bottom:1px solid #e7ddd4}
-    .event-topbar-inner{width:min(1200px,calc(100% - 36px));min-height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .event-back{font-weight:700;color:#6f4f39}.event-logo{font-family:"Cormorant Garamond",serif;font-size:1.55rem;font-weight:700}.event-logo span{color:#9f7657}
-    .event-wrap{width:min(1200px,calc(100% - 36px));margin:auto;padding:64px 0 80px}.event-kicker{color:#9f7657;font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
-    .event-title{font-family:"Cormorant Garamond",serif;font-size:clamp(3rem,8vw,6.2rem);line-height:.95;margin:0;color:#2d2926}.event-sub{margin-top:18px;color:#736b65}
-    .day-section{margin-top:64px}.day-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}.day-head h2{font-family:"Cormorant Garamond",serif;font-size:clamp(2.1rem,4vw,3.2rem);margin:0}
-    .day-meta{margin-top:8px;color:#736b65}.day-link{display:inline-flex;align-items:center;justify-content:center;padding:11px 18px;border-radius:999px;background:#9f7657;color:#fff;font-weight:700;white-space:nowrap}.day-link:hover{background:#6f4f39}
-    .preview-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.preview-card{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#f7f1eb}.preview-card img{width:100%;height:100%;object-fit:cover;display:block}
-    .preview-empty{grid-column:1/-1;padding:30px;border:1px dashed #d6b89d;border-radius:16px;color:#736b65;text-align:center}.photo-count{font-size:.9rem;color:#736b65}
-    @media(max-width:900px){.preview-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(max-width:620px){.event-topbar-inner,.event-wrap{width:min(100% - 24px,1200px)}.event-wrap{padding-top:42px}.day-section{margin-top:48px}.day-head{align-items:flex-start;flex-direction:column}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.preview-card{border-radius:10px}.day-link{width:100%}}
+
+    body {
+      background: #fffdfb;
+    }
+
+
+    /* TOP BAR */
+
+    .event-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+
+      background: rgba(255, 253, 251, 0.94);
+
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid #e7ddd4;
+    }
+
+
+    .event-topbar-inner {
+
+      width: min(
+        1200px,
+        calc(100% - 36px)
+      );
+
+      min-height: 72px;
+
+      margin: auto;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 18px;
+    }
+
+
+    .event-back {
+
+      font-weight: 700;
+
+      color: #6f4f39;
+
+      text-decoration: none;
+    }
+
+
+    .event-back:hover {
+      opacity: 0.7;
+    }
+
+
+    .event-logo {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 1.55rem;
+
+      font-weight: 700;
+
+      text-decoration: none;
+
+      color: #2d2926;
+    }
+
+
+    .event-logo span {
+      color: #9f7657;
+    }
+
+
+    /* MAIN CONTENT */
+
+    .event-wrap {
+
+      width: min(
+        1200px,
+        calc(100% - 36px)
+      );
+
+      margin: auto;
+
+      padding: 64px 0 80px;
+    }
+
+
+    .event-kicker {
+
+      color: #9f7657;
+
+      font-size: 0.78rem;
+
+      font-weight: 700;
+
+      letter-spacing: 0.2em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 12px;
+    }
+
+
+    .event-title {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(
+          3rem,
+          8vw,
+          6.2rem
+        );
+
+      line-height: 0.95;
+
+      margin: 0;
+
+      color: #2d2926;
+    }
+
+
+    .event-sub {
+
+      margin-top: 18px;
+
+      color: #736b65;
+
+      font-size: 1rem;
+    }
+
+
+    /* DAY SECTION */
+
+    .day-section {
+      margin-top: 64px;
+    }
+
+
+    .day-head {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: end;
+
+      gap: 20px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .day-head h2 {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(
+          2.1rem,
+          4vw,
+          3.2rem
+        );
+
+      margin: 0;
+
+      color: #2d2926;
+    }
+
+
+    .day-meta {
+
+      margin-top: 8px;
+
+      color: #736b65;
+    }
+
+
+    .photo-count {
+
+      font-size: 0.9rem;
+
+      color: #736b65;
+    }
+
+
+    /* BUTTON */
+
+    .day-link {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 11px 18px;
+
+      border-radius: 999px;
+
+      background: #9f7657;
+
+      color: #ffffff;
+
+      font-weight: 700;
+
+      white-space: nowrap;
+
+      text-decoration: none;
+
+      transition: 0.2s ease;
+    }
+
+
+    .day-link:hover {
+
+      background: #6f4f39;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* PREVIEW GRID */
+
+    .preview-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          4,
+          minmax(0, 1fr)
+        );
+
+      gap: 10px;
+    }
+
+
+    .preview-card {
+
+      aspect-ratio: 1 / 1;
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      background: #f7f1eb;
+
+      position: relative;
+    }
+
+
+    .preview-card img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition: 0.3s ease;
+    }
+
+
+    .preview-card:hover img {
+      transform: scale(1.03);
+    }
+
+
+    /* EMPTY / ERROR */
+
+    .preview-empty {
+
+      grid-column: 1 / -1;
+
+      padding: 30px;
+
+      border:
+        1px dashed
+        #d6b89d;
+
+      border-radius: 16px;
+
+      color: #736b65;
+
+      text-align: center;
+
+      background: #fffdfb;
+    }
+
+
+    /* TABLET */
+
+    @media (max-width: 900px) {
+
+      .preview-grid {
+
+        grid-template-columns:
+          repeat(
+            3,
+            minmax(0, 1fr)
+          );
+      }
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 620px) {
+
+      .event-topbar-inner,
+      .event-wrap {
+
+        width:
+          min(
+            100% - 24px,
+            1200px
+          );
+      }
+
+
+      .event-wrap {
+        padding-top: 42px;
+      }
+
+
+      .event-title {
+
+        font-size:
+          clamp(
+            3rem,
+            15vw,
+            4.5rem
+          );
+      }
+
+
+      .day-section {
+        margin-top: 48px;
+      }
+
+
+      .day-head {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+
+      .preview-grid {
+
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
+
+        gap: 7px;
+      }
+
+
+      .preview-card {
+        border-radius: 10px;
+      }
+
+
+      .day-link {
+        width: 100%;
+      }
+    }
+
   </style>
+
 </head>
+
+
+
 <body>
+
+
+  <!-- =========================================
+       TOP NAVIGATION
+  ========================================== -->
+
   <div class="event-topbar">
+
     <div class="event-topbar-inner">
-      <a class="event-back" href="index.html#portofolio">← Kembali</a>
-      <a class="event-logo" href="index.html"><span>Cerita</span> & Kita</a>
+
+      <a
+        class="event-back"
+        href="index.html#portofolio"
+      >
+        ← Kembali
+      </a>
+
+
+      <a
+        class="event-logo"
+        href="index.html"
+      >
+        <span>Cerita</span> & Kita
+      </a>
+
     </div>
+
   </div>
+
+
+
+  <!-- =========================================
+       EVENT
+  ========================================== -->
+
   <main class="event-wrap">
-    <div class="event-kicker">Client Gallery</div>
-    <h1 class="event-title">HUT MUSISABE ke-37</h1>
-    <p class="event-sub">Pilih hari acara untuk melihat seluruh foto.</p>
 
-    <section class="day-section">
+
+    <div class="event-kicker">
+      Client Gallery
+    </div>
+
+
+    <h1 class="event-title">
+      HUT MUSISABE ke-37
+    </h1>
+
+
+    <p class="event-sub">
+      Pilih hari acara untuk melihat seluruh foto.
+    </p>
+
+
+
+    <!-- =========================================
+         SABTU
+    ========================================== -->
+
+    <section
+      class="day-section"
+      id="sabtu"
+    >
+
+
       <div class="day-head">
+
+
         <div>
-          <h2>Sabtu</h2>
-          <div class="day-meta">26 September 2026 · <span class="photo-count" id="countSabtu">Memuat...</span></div>
+
+          <h2>
+            Sabtu
+          </h2>
+
+
+          <div class="day-meta">
+
+            26 September 2026
+
+            ·
+
+            <span
+              class="photo-count"
+              id="countSabtu"
+            >
+              Memuat...
+            </span>
+
+          </div>
+
         </div>
-        <a class="day-link" href="gallery-day.html?day=sabtu">Lihat Semua Foto →</a>
+
+
+        <a
+          class="day-link"
+          href="gallery-day.html?day=sabtu"
+        >
+          Lihat Semua Foto →
+        </a>
+
+
       </div>
-      <div class="preview-grid" id="previewSabtu"></div>
+
+
+
+      <div
+        class="preview-grid"
+        id="previewSabtu"
+      >
+      </div>
+
+
     </section>
 
-    <section class="day-section">
+
+
+    <!-- =========================================
+         MINGGU
+    ========================================== -->
+
+    <section
+      class="day-section"
+      id="minggu"
+    >
+
+
       <div class="day-head">
+
+
         <div>
-          <h2>Minggu</h2>
-          <div class="day-meta">27 September 2026 · <span class="photo-count" id="countMinggu">Memuat...</span></div>
+
+          <h2>
+            Minggu
+          </h2>
+
+
+          <div class="day-meta">
+
+            27 September 2026
+
+            ·
+
+            <span
+              class="photo-count"
+              id="countMinggu"
+            >
+              Memuat...
+            </span>
+
+          </div>
+
         </div>
-        <a class="day-link" href="gallery-day.html?day=minggu">Lihat Semua Foto →</a>
+
+
+        <a
+          class="day-link"
+          href="gallery-day.html?day=minggu"
+        >
+          Lihat Semua Foto →
+        </a>
+
+
       </div>
-      <div class="preview-grid" id="previewMinggu"></div>
+
+
+
+      <div
+        class="preview-grid"
+        id="previewMinggu"
+      >
+      </div>
+
+
     </section>
+
+
+
   </main>
+
+
+
+  <!-- =========================================
+       SCRIPT
+  ========================================== -->
+
   <script src="gallery-musisabe.js"></script>
+
+
 </body>
+
 </html>
