@@ -5,76 +5,160 @@ const DAYS = {
   sabtu: {
     path: "HUT MUSISABE ke-37/Sabtu, 26 Sept. 2026",
     gridId: "previewSabtu",
-    countId: "countSabtu",
-    fallback: ["DSC07548.JPG","DSC07555.JPG","DSC07564.JPG","DSC07565.JPG","DSC07566.JPG","DSC07567.JPG","DSC07568.JPG","DSC07569.JPG","DSC07570.JPG","DSC07571.JPG","DSC07572.JPG","DSC07574.JPG"]
+    countId: "countSabtu"
   },
   minggu: {
     path: "HUT MUSISABE ke-37/Minggu, 27 Sept. 2026",
     gridId: "previewMinggu",
-    countId: "countMinggu",
-    fallback: ["DSC02058.JPG","DSC02077.JPG","DSC02195.JPG","DSC02197.JPG"]
+    countId: "countMinggu"
   }
 };
 
 function encodePath(path) {
-  return path.split("/").filter(Boolean).map(encodeURIComponent).join("/");
+  return path
+    .split("/")
+    .filter(Boolean)
+    .map(encodeURIComponent)
+    .join("/");
 }
+
 function originalUrl(path, fileName) {
   return `${R2_BASE}/${encodePath(path)}/${encodeURIComponent(fileName)}`;
 }
+
 function previewUrl(path, fileName) {
   return `${R2_BASE}/${encodePath(path)}/preview/${encodeURIComponent(fileName)}`;
 }
-async function loadManifest(path) {
+
+function extractDirectImageNames(keys, path) {
+  const prefix = `${path}/`;
+
+  return [...new Set(
+    keys
+      .filter(key => typeof key === "string" && key.startsWith(prefix))
+      .map(key => key.slice(prefix.length))
+      // Hanya file original yang langsung berada di folder hari.
+      // Isi folder preview/ otomatis tidak ikut dihitung.
+      .filter(relative =>
+        relative &&
+        !relative.includes("/") &&
+        /\.(jpe?g|png|webp|gif|avif)$/i.test(relative)
+      )
+  )].sort((a, b) =>
+    a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
+  );
+}
+
+async function loadFromR2List(path) {
+  const prefix = `${path}/`;
+  const url = `${R2_BASE}/list?prefix=${encodeURIComponent(prefix)}&v=${Date.now()}`;
+
+  const response = await fetch(url, { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`List R2 gagal: HTTP ${response.status}`);
+  }
+
+  const keys = await response.json();
+
+  if (!Array.isArray(keys)) {
+    throw new Error("Respons /list bukan array");
+  }
+
+  return extractDirectImageNames(keys, path);
+}
+
+async function loadFromManifest(path) {
   const url = `${R2_BASE}/${encodePath(path)}/gallery.json?v=${Date.now()}`;
+  const response = await fetch(url, { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`Manifest gagal: HTTP ${response.status}`);
+  }
+
+  const data = await response.json();
+  const photos = Array.isArray(data) ? data : data.photos;
+
+  if (!Array.isArray(photos)) {
+    throw new Error("gallery.json tidak valid");
+  }
+
+  return [...new Set(
+    photos.filter(name =>
+      /\.(jpe?g|png|webp|gif|avif)$/i.test(String(name))
+    )
+  )];
+}
+
+async function loadPhotoNames(path) {
   try {
-    const response = await fetch(url, { cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = await response.json();
-    const photos = Array.isArray(data) ? data : data.photos;
-    if (!Array.isArray(photos)) throw new Error("gallery.json tidak valid");
-    return photos.filter(name => /\.(jpe?g|png|webp|gif|avif)$/i.test(String(name)));
+    const photos = await loadFromR2List(path);
+
+    if (photos.length) {
+      return photos;
+    }
+
+    throw new Error("List R2 kosong");
   } catch (error) {
-    console.warn("Manifest gagal dibaca; memakai daftar cadangan:", path, error);
-    return null;
+    console.warn("List R2 gagal, mencoba gallery.json:", error);
+    return loadFromManifest(path);
   }
 }
+
 function setPreviewWithFallback(img, path, fileName) {
   img.src = previewUrl(path, fileName);
+
   img.onerror = () => {
     img.onerror = null;
     img.src = originalUrl(path, fileName);
   };
 }
+
 async function renderDay(dayKey) {
   const config = DAYS[dayKey];
   const grid = document.getElementById(config.gridId);
   const count = document.getElementById(config.countId);
+
   if (!grid || !count) return;
 
   grid.innerHTML = "";
   count.textContent = "Memuat...";
 
-  const manifestPhotos = await loadManifest(config.path);
-  const photos = manifestPhotos && manifestPhotos.length ? manifestPhotos : config.fallback;
-  count.textContent = `${photos.length.toLocaleString("id-ID")} foto`;
+  try {
+    const photos = await loadPhotoNames(config.path);
 
-  if (!photos.length) {
-    grid.innerHTML = '<div class="preview-empty">Belum ada foto untuk hari ini.</div>';
-    return;
+    count.textContent = `${photos.length.toLocaleString("id-ID")} foto`;
+
+    if (!photos.length) {
+      grid.innerHTML =
+        '<div class="preview-empty">Belum ada foto untuk hari ini.</div>';
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    photos.slice(0, PREVIEW_LIMIT).forEach(fileName => {
+      const card = document.createElement("div");
+      card.className = "preview-card";
+
+      const img = document.createElement("img");
+      img.alt = fileName;
+      img.loading = "lazy";
+      img.decoding = "async";
+
+      setPreviewWithFallback(img, config.path, fileName);
+
+      card.appendChild(img);
+      fragment.appendChild(card);
+    });
+
+    grid.appendChild(fragment);
+  } catch (error) {
+    console.error(`Gagal memuat ${dayKey}:`, error);
+    count.textContent = "Tidak tersedia";
+    grid.innerHTML =
+      '<div class="preview-empty">Galeri sedang tidak dapat dimuat. Silakan refresh halaman.</div>';
   }
-
-  photos.slice(0, PREVIEW_LIMIT).forEach(fileName => {
-    const card = document.createElement("div");
-    card.className = "preview-card";
-    const img = document.createElement("img");
-    img.alt = fileName;
-    img.loading = "lazy";
-    img.decoding = "async";
-    setPreviewWithFallback(img, config.path, fileName);
-    card.appendChild(img);
-    grid.appendChild(card);
-  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
