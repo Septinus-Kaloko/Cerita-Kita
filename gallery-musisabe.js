@@ -1,4 +1,4 @@
-const R2_BASE = "https://pub-52a26396ab53445e894e45f34beba90e.r2.dev";
+const R2_BASE = "https://ceritadankita-photos.septinushaloho.workers.dev";
 const PREVIEW_LIMIT = 8;
 
 const DAYS = {
