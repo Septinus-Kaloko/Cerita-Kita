@@ -1,5 +1,5 @@
 const R2_BASE = "https://ceritadankita-photos.septinushaloho.workers.dev";
-const BATCH_SIZE = 40;
+const BATCH_SIZE = 8;
 
 const DAY_CONFIG = {
   sabtu: { path: "HUT MUSISABE ke-37/Sabtu, 26 Sept. 2026", date: "Sabtu, 26 September 2026" },
